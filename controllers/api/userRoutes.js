@@ -35,7 +35,7 @@ router.get('/signup', async (req, res) => {
 			username: req.body.username,
 			password: req.body.password,
 		});
-		const userObj = Users.findOne({ where: { email: req.body.email } });
+		const userObj = await Users.findOne({ where: { email: req.body.email } });
 		req.session.save(() => {
 			req.session.user_id = userObj.id;
 			req.session.loggedIn = true;
