@@ -1,12 +1,23 @@
 const router = require('express').Router();
+const { Users, Posts } = require('../models');
 
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
 	try {
+		const posts = await Posts.findAll({
+			include: [
+				{
+					model: Users,
+					attributes: ['username'],
+				},
+			],
+		});
+		const postsObj = posts.map((post) => post.get({ plain: true }));
 		res.render('home', {
-
+			posts: postsObj,
 		});
 	} catch (err) {
 		res.status(500).json(err);
+		console.log(err);
 	}
 });
 
@@ -17,6 +28,7 @@ router.get('/dashboard', (req, res) => {
 		});
 	} catch (err) {
 		res.status(500).json(err);
+		console.log(err);
 	}
 });
 
@@ -27,6 +39,7 @@ router.get('/login', (req, res) => {
 		});
 	} catch (err) {
 		res.status(500).json(err);
+		console.log(err);
 	}
 });
 
@@ -37,6 +50,7 @@ router.get('/signup', (req, res) => {
 		});
 	} catch (err) {
 		res.status(500).json(err);
+		console.log(err);
 	}
 });
 
@@ -45,6 +59,7 @@ router.get('/logout', (req, res) => {
 		
 	} catch (err) {
 		res.status(500).json(err);
+		console.log(err);
 	}
 });
 

@@ -1,0 +1,13 @@
+<div class="d-flex p-2">
+	<div class="d-flex justify-content-start flex-row flex-wrap mb-3">
+		{{#each posts as |post|}}
+		<div class="post card m-2 p-2">
+			<div class="d-flex justify-content-between">
+				<button class="card-title btn btn-secondary">{{post.title}}</button>
+				<text class="card-text">{{post.created_at}}</text>
+			</div>
+			<p>{{post.body}}</p>
+		</div>
+		{{/each}}
+	</div>
+</div>

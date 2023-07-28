@@ -1,8 +1,8 @@
 INSERT INTO Users (email, username, password)
 VALUES
-	('jeff@fake.email', 'Techy', 'fake1'),
-	('james@fake.email', 'bluegreen', 'fake2'),
-	('sarah@fake.email', 'interblogosphere', fake2);
+	('jeff@fake.email', 'Techy', 'fakepw01'),
+	('james@fake.email', 'bluegreen', 'fakepw02'),
+	('sarah@fake.email', 'interblogosphere', 'fakepw02');
 
 INSERT INTO Posts (title, body, user_id)
 VALUES
