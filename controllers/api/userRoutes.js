@@ -19,7 +19,7 @@ router.get('/login', async (req, res) => {
 				return;
 			}
 			req.session.user_id = userObj.id;
-			req.session.loggedIn = true;
+			req.session.logged_in = true;
 			res.status(200).json({ user: userObj, message: 'You are now logged in!' });
 		});
 	}
@@ -38,7 +38,7 @@ router.get('/signup', async (req, res) => {
 		const userObj = await Users.findOne({ where: { email: req.body.email } });
 		req.session.save(() => {
 			req.session.user_id = userObj.id;
-			req.session.loggedIn = true;
+			req.session.logged_in = true;
 			res.status(200).json(userObj);
 		});
 	}
@@ -49,7 +49,7 @@ router.get('/signup', async (req, res) => {
 
 router.get('/logout', async (req, res) => {
 	try {
-		if (req.session.loggedIn) {
+		if (req.session.logged_in) {
 			req.session.destroy(() => {
 				res.status(204).end();
 			});

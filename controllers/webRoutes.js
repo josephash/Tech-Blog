@@ -21,10 +21,20 @@ router.get('/', async (req, res) => {
 	}
 });
 
-router.get('/dashboard', (req, res) => {
+router.get('/dashboard', async (req, res) => {
 	try {
+		const posts = await Posts.findAll({
+			include: [
+				{
+					model: Users,
+					attributes: ['username'],
+				},
+			],
+			where: { user_id: req.session.user_id },
+		});
+		const postsObj = posts.map((post) => post.get({ plain: true }));
 		res.render('dashboard', {
-			
+			posts: postsObj,
 		});
 	} catch (err) {
 		res.status(500).json(err);
